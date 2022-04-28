@@ -11,7 +11,7 @@ interface Details {
 }
 
 const SpeciesMoviesCard: React.FC<{details: Details}>= ({details}) => {
-    const {url, title, director, producer} = details;
+    const {url, title,} = details;
 
     const id = url.split('/');
     

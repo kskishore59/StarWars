@@ -11,12 +11,11 @@ const SpeciesFullInfo = (props: Props) => {
     const params = useParams()
     const species = useSelector((state:RootState) => state.species)
     const filmsInfo = useSelector((state: RootState) => state.films)
-    const peopleInfo = useSelector((state: RootState) => state.characters)
+    const peopleInfo = useSelector((state: RootState)  => state.characters)
 
     const speciesInfo = species.find((each) => each.url === `https://swapi.dev/api/species/${params.id}/`)
     const speciesFilms = filmsInfo.filter((each) => speciesInfo?.films.includes(each.url))
     const speciesCharacters = peopleInfo.filter((each) => speciesInfo?.people.includes(each.url))
-
     console.log(speciesFilms)
 //     average_height: "n/a"
 // average_lifespan: "indefinite"
@@ -34,20 +33,20 @@ const SpeciesFullInfo = (props: Props) => {
 // skin_colors: "n/a"
 
   return (
-    <div className="bg-slate-300 rounded w-full overflow-hidden transition-all shadow-lg cursor-pointer  translate-x-px flex flex-col align-items-center p-5"><div>SPECIES : {speciesInfo?.name}</div>
-        <div>
-            <h1>Classification : {speciesInfo?.classification}</h1>
-            <h1>Created  : {speciesInfo?.created}</h1>
-            <h1>Eye Color : {speciesInfo?.eye_colors}</h1>
-            <h1>Home World : {speciesInfo?.homeworld}</h1>
-            <h1>Average LifeSpan : {speciesInfo?.average_lifespan}</h1>
-            <h1>Average Height : {speciesInfo?.average_height}</h1>
-            <h1>Hair Color : {speciesInfo?.hair_colors}</h1>
-            <div>FILMS : {speciesFilms?.map((each) => (<SpeciesMoviesCard details={each} />))}</div>
-            <div>PEOPLE : 
+    <div className="bg-slate-300 rounded w-full overflow-hidden transition-all shadow-lg  translate-x-px flex flex-col align-items-center p-5"><div className="font-sans font-bold text-xl">SPECIES : {speciesInfo?.name}</div>
+        <ul className="flex flex-col text-left w-full pl-10 pt-10">
+            <li className="font-sans p-2 ">Classification : {speciesInfo?.classification}</li>
+            <li className="font-sans p-2 ">Created  : {speciesInfo?.created}</li>
+            <li className="font-sans p-2 ">Eye Color : {speciesInfo?.eye_colors}</li>
+            <li className="font-sans p-2 ">Home World : {speciesInfo?.homeworld}</li>
+            <li className="font-sans p-2 ">Average LifeSpan : {speciesInfo?.average_lifespan}</li>
+            <li className="font-sans p-2 ">Average Height : {speciesInfo?.average_height}</li>
+            <li className="font-sans p-2 ">Hair Color : {speciesInfo?.hair_colors}</li>
+            <div className="font-sans p-2 ">FILMS : {speciesFilms?.map((each) => (<SpeciesMoviesCard details={each} />))}</div>
+            <div className="font-sans p-2">PEOPLE : 
                 {speciesCharacters?.map((each) => (<CharacterCard details={each} />))}
             </div>
-        </div>
+        </ul>
     </div>
   )
 }

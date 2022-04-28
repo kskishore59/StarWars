@@ -128,6 +128,8 @@ export interface Species {
     loadFilms: boolean,
     loadCharacters: boolean,
     loadPeople: boolean,
+    loadSpecies:boolean,
+    loadStarShips: boolean,
 }
 
 export const initialState:Films = {
@@ -140,6 +142,8 @@ export const initialState:Films = {
     loadFilms: true,
     loadCharacters: true,
     loadPeople: true,
+    loadSpecies: true,
+    loadStarShips: true,
 }
 
 export const fetchFilms = createAsyncThunk(
@@ -245,11 +249,13 @@ export const rootSlice = createSlice({
               state.starShips= [...state.starShips, ...starShipIncludes]
             }
             state.starShips = action.payload
+            state.loadStarShips = false
           }).addCase(fetchSpecies.fulfilled, (state, action:PayloadAction<any>) => {
               if (state.species.length !== 0){
                 const speciesIncludes = _.difference(state.species, action.payload);
                 console.log(speciesIncludes)
                 state.species= [...state.species, ...speciesIncludes]
+                state.loadSpecies = false
               }
               state.species = action.payload
           })

@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { useEffect, useState } from 'react';
+import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Character, fetchSpecies, fetchStarShips, Species, StarShip } from '../../store/rootSlice';
@@ -19,6 +19,8 @@ const People = (props: Props) => {
   const starShips = useSelector((state:RootState) =>  state.starShips)
   const species = useSelector((state:RootState) => state.species)
   const loadPeople = useSelector((state: RootState) => state.loadPeople)
+  const loadingSpecies = useSelector((state: RootState) => state.loadSpecies)
+  const loadingStarShips = useSelector((state:RootState) => state.loadStarShips)
   // const selectStarShips = createSelector(  
   //   (state: RootState) => state.characters,
   //   (state:RootState) =>  (state.starShips),
@@ -68,6 +70,30 @@ const People = (props: Props) => {
     setStarShipInfo(starShipsInfo)
   },[starShips])
 
+  const renderSpecies = () => {
+    return (
+      <>
+      {speciesInfo.length === 0 ? '' :
+(<div>
+  Species : 
+  <ul>
+     {speciesInfo.map((each) => (<SpeciesName details={each} />))}
+  </ul>
+</div>)}
+      </>
+    )
+  }
+
+  const renderStarShips = () => {
+    return (
+      <>
+        {starShipInfo.length === 0 ? '' : (<div>
+  <h1>Starships : </h1>
+  {starShips.map((each) => (<StarShipsName details={each} />))}
+</div>)} 
+      </>
+    )
+  }
 
   return (
    <>
@@ -81,23 +107,23 @@ const People = (props: Props) => {
   <h1>Created : {character?.created}</h1>
   <h1>Mass : {character?.mass}</h1>
 <div>
-{starShipInfo.length === 0 ? '' : (<div>
-  <h1>Starships : </h1>
-  {starShips.map((each) => (<StarShipsName details={each} />))}
-</div>)} 
+
 </div>
 <div>
-{speciesInfo.length === 0 ? '' :
-(<div>
-  Species : 
-  <ul>
-     {speciesInfo.map((each) => (<SpeciesName details={each} />))}
-  </ul>
-</div>)}
+{loadingStarShips ? (<div className="flex h-9 items-center justify-center">
+  <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+    <span className="visually-hidden"></span>
+  </div>
+</div>) : renderStarShips()}
+{loadingSpecies ? (<div className="flex h-full items-center justify-center">
+  <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+    <span className="visually-hidden"></span>
+  </div>
+</div>) : renderSpecies()}
 </div>
 </div>
 </> 
-  )
+  ) 
 }
 
 export default People;
