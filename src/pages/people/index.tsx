@@ -1,5 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Character, fetchSpecies, fetchStarShips, Species, StarShip } from '../../store/rootSlice';

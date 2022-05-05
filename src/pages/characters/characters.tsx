@@ -1,12 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import axios, { AxiosResponse } from 'axios';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { fetchCharacters, Film } from '../../store/rootSlice';
 import { AppThunkDispatch, RootState } from '../../store/store';
-import { Character, fetchCharacters, Film, updateCharactersList } from '../../store/rootSlice';
-import { useDispatch } from 'react-redux';
-import swapi from '../../services/apis/swapi';
-import { Link } from 'react-router-dom';
 import CharacterCard from './characterCard';
 
 type Props = {}
@@ -19,19 +15,22 @@ const Characters:React.FC<Props>= (props) => {
    const details = useSelector((state: RootState) => state.films);
    const characters = useSelector((state: RootState) => state.characters);
 
-  async function getData () {
+   function getData () {
     const film = Object.values(details).find((obj) => {
         return obj.url === `https://swapi.dev/api/films/${params.id}/`
     })
     setData(film)
     if (film){
-    const characterArray  = film.characters.filter((value) => characters.map((each) => each.url === value))
+      console.log(characters)
+    const characterArray  = film.characters.filter((value) => characters.filter((each) => each.url !== value))
     console.log(characterArray)
     const charactersId = characterArray.map((each) => {
       let split = each.split('/')
       return split[split.length -2]
-    }) 
-    dispatch(fetchCharacters(charactersId))
+    })
+    if (characterArray){ 
+       dispatch(fetchCharacters(charactersId))
+    }
       // if (charactersId){
       //   swapi.getCharacters(charactersId)
       //   .then((response) => {
@@ -52,7 +51,6 @@ const Characters:React.FC<Props>= (props) => {
 
 useEffect(() => {
     getData()
-    console.log(characters)
 }, [])
 
 

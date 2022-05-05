@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -11,7 +11,7 @@ interface Details {
 }
 
 const MoviesCard: React.FC<{details: Details}>= ({details}) => {
-    const {url, title, director, producer} = details;
+    const {url, title,} = details;
 
     const id = url.split('/');
     

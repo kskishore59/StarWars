@@ -1,8 +1,6 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { RootState } from '../../store/store'
-import CharacterCard from '../characters/characterCard'
 import SpeciesMoviesCard from '../species/SpeciesMovies'
 
 type Props = {}

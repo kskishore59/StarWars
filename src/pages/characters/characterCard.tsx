@@ -15,7 +15,7 @@ const CharacterCard: React.FC<{details: Character}>= ({details}) => {
 }
 
 
-export default CharacterCard
+export default CharacterCard;
 
 
 

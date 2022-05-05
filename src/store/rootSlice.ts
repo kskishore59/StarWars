@@ -218,9 +218,11 @@ export const rootSlice = createSlice({
         // Add reducers for additional action types here, and handle loading state as needed
         builder.addCase(fetchFilms.fulfilled, (state, action:PayloadAction<any>) => {
             // Add user to the state array
-            const difference = _.difference(state.films, action.payload)
-
-            state.films = [...state.films, ...difference]
+            if(state.films.length >= 0){
+              const difference = _.difference(action.payload, state.films)
+              state.films = [...state.films, ...difference]
+            }
+            state.films = [...action.payload]
             state.loadFilms = false
           }).addCase(fetchFilms.pending, (state) => {
             state.loadFilms = true
@@ -255,9 +257,10 @@ export const rootSlice = createSlice({
                 const speciesIncludes = _.difference(state.species, action.payload);
                 console.log(speciesIncludes)
                 state.species= [...state.species, ...speciesIncludes]
-                state.loadSpecies = false
+                
               }
               state.species = action.payload
+              state.loadSpecies = false
           })
     },
 })

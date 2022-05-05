@@ -1,12 +1,10 @@
-import axios, { AxiosResponse } from 'axios';
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {  Film, updateFilmLoader, fetchFilms } from '../../store/rootSlice';
+import { fetchFilms, Film } from '../../store/rootSlice';
 
-import swapi from '../../services/apis/swapi';
-import MoviesCard from './MoviesCard';
 import { useSelector } from 'react-redux';
-import { AppDispatch, AppThunkDispatch, RootState } from '../../store/store';
+import { AppThunkDispatch, RootState } from '../../store/store';
+import MoviesCard from './MoviesCard';
 
 export interface MovieResponse {
     count: string,
