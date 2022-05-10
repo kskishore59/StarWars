@@ -126,7 +126,7 @@ const People = (props: Props) => {
 
 	return (
 		<>
-			<div className="Card bg-slate-300 rounded w-full overflow-hidden transition-all shadow-lg cursor-pointer  translate-x-px flex flex-col align-items-center p-5">
+			<div className="Card rounded w-full overflow-hidden transition-all cursor-pointer  translate-x-px flex flex-col align-items-center justify-items-start p-5">
 				<h1 className="font-bold text-2xl">{character?.name}</h1>
 				<h1>Birth Year : {character?.birth_year}</h1>
 				<h1>Gender : {character?.gender}</h1>

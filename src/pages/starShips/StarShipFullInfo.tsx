@@ -41,7 +41,7 @@ const StarShipFullInfo = (props: Props) => {
 	}, []);
 
 	return (
-		<div className="bg-slate-300 rounded w-full overflow-hidden transition-all shadow-lg cursor-pointer  translate-x-px flex flex-col align-items-center p-5">
+		<div className="rounded w-full overflow-hidden transition-all shadow-lg cursor-pointer  translate-x-px flex flex-col align-items-center p-5">
 			STARSHIP : {starShipInfo?.name}
 			<div className="flex-col align-items-start w-102">
 				<h1>MLGT : {starShipInfo?.MGLT}</h1>

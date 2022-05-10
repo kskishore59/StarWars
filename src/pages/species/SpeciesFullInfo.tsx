@@ -67,7 +67,7 @@ const SpeciesFullInfo = (props: Props) => {
 	console.log(speciesInfo);
 
 	return (
-		<div className="bg-slate-300 rounded w-full overflow-hidden transition-all shadow-lg  translate-x-px flex flex-col align-items-center p-5">
+		<div className="rounded w-full overflow-hidden transition-all shadow-lg  translate-x-px flex flex-col align-items-center p-5">
 			<div className="font-sans font-bold text-xl">
 				SPECIES : {speciesInfo?.name}
 			</div>
